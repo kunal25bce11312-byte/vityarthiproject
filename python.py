@@ -1,33 +1,37 @@
-def calculate_bmi(weight, height):
-    
-    bmi = weight / (height ** 2)
-    return bmi
+def calc(w, h):
+    return w / (h ** 2)
 
-
-def label_bmi(bmi):
-    
-    if bmi < 18.5:
+def cat(b):
+    if b < 18.5:
         return "Underweight"
-    elif 18.5 <= bmi < 24.9:
-        return "Normal weight"
-    elif 25 <= bmi < 29.9:
+    elif b < 25:
+        return "Normal"
+    elif b < 30:
         return "Overweight"
     else:
-        return "obese"
-
+        return "Obese"
 
 def main():
-    print("=== BMI Calculator ===")
+    print("BMI Calculator")
+    u = input("Unit? (m)etric or (i)mperial: ").lower()
+    
+    if u == 'm':
+        w = float(input("Weight (kg): "))
+        h = float(input("Height (m): "))
+    elif u == 'i':
+        w = float(input("Weight (lbs): "))
+        h = float(input("Height (in): "))
+        w = w * 0.453592
+        h = h * 0.0254
+    else:
+        print("Invalid unit")
+        return
+    
+    b = calc(w, h)
+    c = cat(b)
+    
+    print(f"BMI: {b:.2f}")
+    print(f"Category: {c}")
 
-    weight = float(input("Enter your weight in kg: "))
-    height = float(input("Enter your height in meters: "))
-
-    bmi = calculate_bmi(weight, height)
-    labeling = label_bmi(bmi)
-
-    print(f"\nYour BMI is: {bmi:.2f}")
-    print(f"Category: {labeling}")
-
-
-if __name__ == "__main__":
+if __name__ == "_main_":
     main()
